@@ -29,6 +29,7 @@ public class LoginSteps extends TestBaseNative {
     public void initPage() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
+
     @Given("^I access the login page$")
     public void I_access_the_login_page() {
         driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
@@ -42,9 +43,7 @@ public class LoginSteps extends TestBaseNative {
     @When("^I click login button$")
     public void I_click_login_button() {
         loginPage.clickOnLoginButton();
-
     }
-
 
     @Then("^I check if user was logged in$")
     public void I_check_if_user_was_logged_in() {
@@ -68,15 +67,15 @@ public class LoginSteps extends TestBaseNative {
     }
 
     private void errorMessageShouldBePresent(String expectedMessage) {
-        WebElement error = driver.findElement(By.className("error-msg"));
-        assertThat(error.getText(), is(expectedMessage));
+        loginPage.errorMessage(expectedMessage);
     }
+
+
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
     public void I_enter_credentials(String emailValue, String passValue) {
         loginPage.enterCredentials(emailValue, passValue);
     }
-
 
     @Then("^I expect \"([^\"]*)\" error message$")
     public void I_expect_error_message(String expectedMessage) {
