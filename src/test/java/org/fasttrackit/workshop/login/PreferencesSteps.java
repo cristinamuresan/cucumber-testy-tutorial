@@ -5,6 +5,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fasttrackit.util.TestBase;
+import org.fasttrackit.workshop.Menu.MainMenuView;
 import org.fasttrackit.workshop.Preferences.PreferencesWindow;
 
 public class PreferencesSteps extends TestBase {
@@ -38,17 +39,18 @@ public class PreferencesSteps extends TestBase {
     }
 
     @Then("^I should see \"([^\"]*)\" message$")
-    public void I_should_see_message(String arg1)  {
-        preferencesWindow.seeMessage();
+    public void I_should_see_message(String message)  {
+        preferencesWindow.seeMessage(message);
+        LoginSteps.VALID_PASS = newPass;
     }
 
     @And("^I close Preferences window$")
     public void I_close_Preferences_window()  {
-
+        preferencesWindow.close();
     }
 
-    @And("^I can re-login with new credentials$")
-    public void I_can_re_login_with_new_credentials()  {
-
+    @And("^I logout$")
+    public void I_logout() {
+        preferencesWindow.logout();
     }
 }
