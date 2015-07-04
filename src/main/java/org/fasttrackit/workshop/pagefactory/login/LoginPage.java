@@ -12,16 +12,20 @@ public class LoginPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginPage.class);
 
     @FindBy(how = How.ID, using = "email")
-    private WebElement emailEl;
+    private WebElement email;
 
     @FindBy(how = How.ID, using = "loginButton")
     private WebElement loginButton;
 
-    public void enterEmail(String email) {
-        emailEl.sendKeys(email);
-    }
+    @FindBy(how = How.ID, using = "password")
+    private WebElement password;
 
     public void clickOnLoginButton() {
         loginButton.click();
+    }
+
+    public void enterCredentials(String emailValue, String passValue) {
+        email.sendKeys(emailValue);
+        password.sendKeys(passValue);
     }
 }
