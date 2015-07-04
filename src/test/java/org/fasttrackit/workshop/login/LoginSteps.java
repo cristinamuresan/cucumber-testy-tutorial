@@ -10,6 +10,7 @@ import org.fasttrackit.util.TestBaseNative;
 import org.fasttrackit.workshop.pagefactory.login.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +20,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LoginSteps extends TestBaseNative {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage;
 
+    public LoginSteps() {
+        initPage();
+    }
+
+    public void initPage() {
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+    }
     @Given("^I access the login page$")
     public void I_access_the_login_page() {
         driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
@@ -33,7 +41,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I click login button$")
     public void I_click_login_button() {
-        loginPage.clickOnLoginButton(driver);
+        loginPage.clickOnLoginButton();
 
     }
 
