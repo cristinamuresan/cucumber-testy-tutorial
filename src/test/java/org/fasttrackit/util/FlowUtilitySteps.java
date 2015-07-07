@@ -21,11 +21,6 @@ public class FlowUtilitySteps extends TestBase {
         Utils.sleep(seconds * 1000);
     }
 
-    @When("^I open url \"([^\"]*)\"$")
-    public void I_open_LC_path(String url) {
-        AppUtils.openUrl(url);
-    }
-
     @Given("^I set browser size to (\\d+), (\\d+)$")
     public void setBrowserSize(int width, int height) {
         LOGGER.info("I set browser size to ({}, {})", width, height);
